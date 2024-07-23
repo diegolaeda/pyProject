@@ -1,5 +1,5 @@
 from battle import *
-
+from register import *
 
 def main():
     print ("Привет, Python!")
@@ -25,5 +25,6 @@ def main():
     print("Атака: ", test_attack, " // Защита: ", test_defence)
     print("Удар на ", kick_damage, " урона.")
     
+    newUser()
     
 main()
