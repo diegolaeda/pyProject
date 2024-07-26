@@ -1,2 +1,2 @@
-def newUser():
+def newUser(chat_id):
     return 0;
