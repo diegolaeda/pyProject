@@ -30,16 +30,20 @@ def main():
     connectDB()
 
     #test block start
-    chat_id = 189974601
+    chat_id = "189974601"
     #test block end
 
-    if(existUser(chat_id) == USER_DOESNT_EXIST):
+    _uid = existUser(chat_id);
+
+    if(_uid == USER_DOESNT_EXIST):
         print("User does not exist. Creating new user!");
         newUser(chat_id)
     else:
-        _uid = loadInfo(chat_id);
-        if(_uid == SUCCESS_ANSWER):
-            print("Information successfully loaded. UID = %d", _uid);    
+        _username = loadInfo(_uid);
+        if(_username == USER_DOESNT_EXIST):
+            print("User data does not exist. Reporting to administrator! Wait for feedback.");
+        else:
+            print("Information successfully loaded. Username is ", _username);    
 
     
 main()
