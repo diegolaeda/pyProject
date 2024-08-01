@@ -17,28 +17,6 @@ def connectDB():
                                   database=POSTGRES_DBNAME);
     CURSOR = CONNECTION.cursor();
 
-def existUser(arg_chat_id):
-    
-    _exist = selectQuery("users", "uid", "telegram_id", arg_chat_id);
-    #test down
-    # _exist = False
-    #test up
-    
-    print("_exist = ", _exist[0]);
-
-    if(_exist != ""):
-        return _exist[0];
-    else:
-        return USER_DOESNT_EXIST
-
-def loadInfo(arg_uid):
-    _hero_name = selectQuery("users_data", "hero_name", "uid", str(arg_uid));
-
-    if(_hero_name != ""):
-        return _hero_name[0];
-    else:
-        return USER_DOESNT_EXIST;
-
 def selectQuery(arg_tablename, arg_fields, arg_termField, arg_termValue):
     global CURSOR
 
@@ -71,3 +49,11 @@ def updateQuery(arg_tablename, arg_termField, arg_termValue):
     global CURSOR
     #аргументы будут другие. поля и значения добавить. но скорее всего универсальной функции просто не будет
     #пока лень писать, позже 
+
+def complexQuery(arg_query_text):
+    global CURSOR
+
+    CURSOR.execute(arg_query_text);
+    _fetchResult = CURSOR.fetchone();
+
+    return _fetchResult;
